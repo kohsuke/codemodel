@@ -460,10 +460,15 @@ public final class JBlock implements JGenerable, JStatement {
         return insert(new JForEach( varType, name, collection));
 
     }
+
+    public JBlock tap(Closure<JBlock> c) {
+        c.call(this);
+        return this;
+    }
+
     public void state(JFormatter f) {
         f.g(this);
         if (bracesRequired)
             f.nl();
     }
-
 }

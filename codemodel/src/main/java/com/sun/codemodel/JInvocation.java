@@ -154,7 +154,12 @@ public final class JInvocation extends JExpressionImpl implements JStatement {
     public JInvocation arg(String v) {
         return arg(JExpr.lit(v));
     }
-    
+
+    public JInvocation tap(Closure<JInvocation> c) {
+        c.call(this);
+        return this;
+    }
+
 	/**
 	 * Returns all arguments of the invocation.
 	 * @return
