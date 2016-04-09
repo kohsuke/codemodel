@@ -147,6 +147,10 @@ public abstract class JType implements JGenerable, Comparable<JType> {
      */
     public abstract JType unboxify();
 
+    public final JExpression dotclass() {
+        return JExpr.dotclass(this);
+    }
+
     /**
      * Returns the erasure of this type.
      */

@@ -333,11 +333,6 @@ public abstract class JClass extends JType
         return this.getClass().getName() + '(' + name() + ')';
     }
 
-
-    public final JExpression dotclass() {
-        return JExpr.dotclass(this);
-    }
-
     /** Generates a static method invocation. */
     public final JInvocation staticInvoke(JMethod method) {
         return new JInvocation(this,method);

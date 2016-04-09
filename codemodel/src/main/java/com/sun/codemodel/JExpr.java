@@ -100,9 +100,13 @@ public abstract class JExpr {
     }
 
     public static JExpression dotclass(final JClass cl) {
+        return dotclass((JType)cl);
+    }
+
+    public static JExpression dotclass(final JType cl) {
         return new JExpressionImpl() {
                 public void generate(JFormatter f) {
-                    JClass c;
+                    JType c;
                     if(cl instanceof JNarrowedClass)
                         c = ((JNarrowedClass)cl).basis;
                     else
