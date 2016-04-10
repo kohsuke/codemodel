@@ -41,6 +41,7 @@
 package com.sun.codemodel;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -153,6 +154,14 @@ public final class JInvocation extends JExpressionImpl implements JStatement {
      */
     public JInvocation arg(String v) {
         return arg(JExpr.lit(v));
+    }
+
+    /**
+     * Adds a list of arguments.
+     */
+    public JInvocation args(Collection<? extends JExpression> args) {
+        this.args.addAll(args);
+        return this;
     }
 
     public JInvocation tap(Closure<JInvocation> c) {
