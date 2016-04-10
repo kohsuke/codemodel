@@ -215,7 +215,7 @@ public class JMethod extends JGenerifiableImpl implements JDeclaration, JAnnotat
 	 * @see #varParam(JType, String)
 	 */
 	public JVar varParam(Class<?> type, String name) {
-        return varParam(outer.owner()._ref(type),name);
+        return varParam(outer.owner()._ref(type), name);
     }
 
     /**
@@ -279,7 +279,7 @@ public class JMethod extends JGenerifiableImpl implements JDeclaration, JAnnotat
     }
 
     public <W extends JAnnotationWriter> W annotate2(Class<W> clazz) {
-        return TypedAnnotationWriter.create(clazz,this);
+        return TypedAnnotationWriter.create(clazz, this);
     }
 
     public Collection<JAnnotationUse> annotations() {
@@ -485,5 +485,10 @@ public class JMethod extends JGenerifiableImpl implements JDeclaration, JAnnotat
 
 	protected JCodeModel owner() {
 		return outer.owner();
+	}
+
+	public JMethod tap(Closure<JMethod> c) {
+		c.call(this);
+		return this;
 	}
 }
