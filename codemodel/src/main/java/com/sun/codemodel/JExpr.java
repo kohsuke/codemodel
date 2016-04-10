@@ -285,6 +285,38 @@ public abstract class JExpr {
     public static JExpression lit(String s) {
         return new JStringLiteral(s);
     }
+
+    /**
+     * Little less type safe version of {@link #lit(boolean)} etc based on
+     * the actual instance value.
+     */
+    public static JExpression literal(Object o) {
+        if (o==null)    return _null();
+        if (o instanceof String) {
+            String s = (String) o;
+            return lit(s);
+        }
+        if (o instanceof Class) {
+            return new JAtom(((Class) o).getName()).ref("class");
+        }
+        if (o instanceof Float) {
+            Float f = (Float) o;
+            return lit(f);
+        }
+        if (o instanceof Double) {
+            Double d = (Double) o;
+            return lit(d);
+        }
+        if (o instanceof Long) {
+            Long l = (Long) o;
+            return lit(l);
+        }
+        if (o instanceof Character) {
+            Character c = (Character) o;
+            return lit(c);
+        }
+        return new JAtom(String.valueOf(o));
+    }
     
     /**
      * Creates an expression directly from a source code fragment.
